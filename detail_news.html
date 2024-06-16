@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Proyek</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .carousel-inner {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+        }
+        .carousel-inner img {
+            width: 1600px;
+            height: 500px;
+            object-fit: contain;
+            margin: auto;
+            grid-column: 2 / 3; 
+        }
+        .carousel-item {
+            display: none;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+        .carousel-button {
+            display: inline-block;
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            margin-right: 0.5rem;
+            pointer-events: none;
+        }
+        @media (max-width: 768px) {
+            .carousel-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: start;
+            }
+            .carousel-button {
+                margin-bottom: 1rem;
+            }
+        }
+        .carousel-nav {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #e2e8f0;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        .carousel-nav.prev {
+            grid-column: 1 / 2;
+        }
+        .carousel-nav.next {
+            grid-column: 3 / 4;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+    <div class="container mx-auto px-6 py-16">
+        <h1 class="text-4xl font-semibold mb-8">ZahNews</h1>
+        <div class="mb-8 carousel-buttons">
+            <span class="carousel-button">Figma</span>
+        </div>
+        <div id="carousel" class="relative mb-8">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="news/news1.png" alt="Slide 1">
+                </div>
+            </div>
+        </div>
+        <p class="text-lg">ZahNews adalah platform aplikasi berita terkini yang menyediakan informasi terbaru dari berbagai kategori.</p>
+        <script>
+            let slideIndex = 0;
+            const slides = document.querySelectorAll('.carousel-item');
+    
+            const showSlides = () => {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active');
+                    if (index === slideIndex) {
+                        slide.classList.add('active');
+                    }
+                });
+            }
+            const changeSlide = (n) => {
+                slideIndex = (slideIndex + n + slides.length) % slides.length;
+                showSlides();
+            }
+    
+            setInterval(() => {
+                changeSlide(1);
+            }, 3000); // Ganti slide setiap 3 detik
+        </script>
+</body>
+</html>
